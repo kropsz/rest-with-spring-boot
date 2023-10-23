@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.krops.rest.data.vo.v1.PersonVO;
+import com.krops.rest.data.vo.v2.PersonVOV2;
+import com.krops.rest.mapper.custom.PersonMapper;
 import com.krops.rest.services.PersonServices;
 
 @RestController
@@ -23,6 +25,7 @@ public class PersonController {
 	
 	@Autowired
 	private PersonServices service;
+
 	
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<PersonVO> findAll() {
@@ -40,6 +43,12 @@ public class PersonController {
 	public PersonVO create(@RequestBody PersonVO person) {
 		return service.create(person);
 	}
+
+	@PostMapping(value = "/v2", consumes = MediaType.APPLICATION_JSON_VALUE,
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public PersonVOV2 createV2(@RequestBody PersonVOV2 person) {
+		return service.createV2(person);
+	}	
 	
 	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
