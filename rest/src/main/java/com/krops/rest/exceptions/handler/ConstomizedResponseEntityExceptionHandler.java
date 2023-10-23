@@ -11,7 +11,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.krops.rest.exceptions.ExceptionResponse;
-import com.krops.rest.exceptions.ResourcesNotFound;
+import com.krops.rest.exceptions.ResourceNotFoundException;
 
 @ControllerAdvice
 @RestController
@@ -24,7 +24,7 @@ public class ConstomizedResponseEntityExceptionHandler extends ResponseEntityExc
                 return new ResponseEntity<>(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-     @ExceptionHandler(ResourcesNotFound.class)
+     @ExceptionHandler(ResourceNotFoundException.class)
     public final ResponseEntity<ExceptionResponse> handleNotFoundExceptions(Exception ex, WebRequest request){
         ExceptionResponse exceptionResponse = new ExceptionResponse(
                 new Date(), ex.getMessage(), request.getDescription(false));
