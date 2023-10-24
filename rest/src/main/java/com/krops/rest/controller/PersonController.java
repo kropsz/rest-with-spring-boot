@@ -16,11 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.krops.rest.data.vo.v1.PersonVO;
 import com.krops.rest.data.vo.v2.PersonVOV2;
-import com.krops.rest.mapper.custom.PersonMapper;
 import com.krops.rest.services.PersonServices;
 
 @RestController
-@RequestMapping("/person")
+@RequestMapping("api/person/v1")
 public class PersonController { 
 	
 	@Autowired
